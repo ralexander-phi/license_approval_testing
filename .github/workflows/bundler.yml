@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  license_check_bundler:
+    runs-on: ubuntu-latest
+    name: Check for unapproved licenses
+    steps:
+
+    # Checkout and install your dependencies first
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Install ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 'ruby-3.2'
+    - name: Install
+      working-directory: examples/bundler
+      run: bundler install
+
+    - uses: ralexander-phi/license_approval@raa-other-packages
+      with:
+        working_directory: examples/bundler
+        extra_flags: --enabled-package-managers=bundler
+

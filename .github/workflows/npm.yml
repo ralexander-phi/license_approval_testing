@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  license_check_npm:
+    runs-on: ubuntu-latest
+    name: Check for unapproved licenses
+    steps:
+
+    # Checkout and install your dependencies first
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Install
+      working-directory: examples/npm
+      run: npm install
+
+    - uses: ralexander-phi/license_approval@raa-other-packages
+      with:
+        working_directory: examples/npm
+        extra_flags: --enabled-package-managers=npm
+

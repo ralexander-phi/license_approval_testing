@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  license_check_pip3:
+    runs-on: ubuntu-latest
+    name: Check for unapproved licenses
+    steps:
+
+    # Checkout and install your dependencies first
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Install python3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+    - name: Install
+      working-directory: examples/pip3
+      run: pip3 install -r requirements.txt
+
+    - uses: ralexander-phi/license_approval@raa-other-packages
+      with:
+        working_directory: examples/pip3
+        extra_flags: --enabled-package-managers=pip --python-version=3
+
