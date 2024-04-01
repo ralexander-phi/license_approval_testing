@@ -25,7 +25,7 @@ jobs:
       working-directory: examples/pip3
       run: pip3 install -r requirements.txt
 
-    - uses: ralexander-phi/license_approval@raa-other-packages
+    - uses: ralexander-phi/license_approval@master
       with:
         working_directory: examples/pip3
         extra_flags: --enabled-package-managers=pip --python-version=3

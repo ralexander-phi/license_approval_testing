@@ -20,7 +20,7 @@ jobs:
       working-directory: examples/npm
       run: npm install
 
-    - uses: ralexander-phi/license_approval@raa-other-packages
+    - uses: ralexander-phi/license_approval@master
       with:
         working_directory: examples/npm
         extra_flags: --enabled-package-managers=npm

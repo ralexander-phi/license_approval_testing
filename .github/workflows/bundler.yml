@@ -24,7 +24,7 @@ jobs:
       working-directory: examples/bundler
       run: bundler install
 
-    - uses: ralexander-phi/license_approval@raa-other-packages
+    - uses: ralexander-phi/license_approval@master
       with:
         working_directory: examples/bundler
         extra_flags: --enabled-package-managers=bundler
